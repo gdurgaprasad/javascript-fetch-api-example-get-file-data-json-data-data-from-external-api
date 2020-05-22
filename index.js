@@ -9,26 +9,33 @@ button3.addEventListener("click", getApiData);
 
 function getFileData() {
   fetch("data.txt")
-    .then(data => data.text())
-    .then(res => (outputDiv.innerHTML = res));
+    .then((data) => data.text())
+    .then((res) => (outputDiv.innerHTML = res))
+    .catch((error) => (outputDiv.innerHTML = "Something went wrong"));
 }
 
 function getJsonData() {
   let output = "";
   fetch("data.json")
-    .then(data => data.json())
-    .then(res =>{
-        console.log(res)
-         res.forEach(item => {
-        output += `<li>${item.color}-${item.value}</li>`;
-      })
-    }
-     
-      
-    )
-    
-    .then((output.innerHTML = output));
-  
+    .then((data) => data.json())
+    .then((res) => {
+      res.forEach((item) => {
+        output += `<li>${item.color} - ${item.value} </li>`;
+      });
+    })
+    .then(() => (outputDiv.innerHTML = output))
+    .catch((error) => (outputDiv.innerHTML = "Something went wrong"));
 }
 
-function getApiData() {}
+function getApiData() {
+  let output = "";
+  fetch("https://jsonplaceholder.typicode.com/users")
+    .then((data) => data.json())
+    .then((response) => {
+      response.forEach((item) => {
+        output += `<li>${item.name}</li>`;
+      });
+    })
+    .then(() => (outputDiv.innerHTML = output))
+    .catch((error) => (outputDiv.innerHTML = "Something went wrong"));
+}
