@@ -10,8 +10,12 @@ button3.addEventListener("click", getApiData);
 function getFileData() {
   fetch("data.txt")
     .then((data) => data.text())
-    .then((res) => (outputDiv.innerHTML = res))
-    .catch((error) => (outputDiv.innerHTML = "Something went wrong"));
+    .then((res) => {
+      outputDiv.innerHTML = res;
+    })
+    .catch((error) => {
+      outputDiv.innerHTML = error;
+    });
 }
 
 function getJsonData() {
@@ -23,8 +27,12 @@ function getJsonData() {
         output += `<li>${item.color} - ${item.value} </li>`;
       });
     })
-    .then(() => (outputDiv.innerHTML = output))
-    .catch((error) => (outputDiv.innerHTML = "Something went wrong"));
+    .then(() => {
+      outputDiv.innerHTML = output;
+    })
+    .catch((error) => {
+      outputDiv.innerHTML = error;
+    });
 }
 
 function getApiData() {
@@ -36,6 +44,10 @@ function getApiData() {
         output += `<li>${item.name}</li>`;
       });
     })
-    .then(() => (outputDiv.innerHTML = output))
-    .catch((error) => (outputDiv.innerHTML = "Something went wrong"));
+    .then(() => {
+      outputDiv.innerHTML = output;
+    })
+    .catch((error) => {
+      outputDiv.innerHTML = error;
+    });
 }
